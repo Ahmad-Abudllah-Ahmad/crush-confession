@@ -1,0 +1,40 @@
+{
+  "name": "crush-confessions",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.0",
+    "@prisma/client": "^5.7.0",
+    "next-auth": "^4.24.5",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8.4.30",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
+    "zod": "^3.22.4",
+    "react-hook-form": "^7.49.2",
+    "@hookform/resolvers": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "14.0.4",
+    "prisma": "^5.7.0",
+    "typescript": "^5.0.0"
+  }
+}
