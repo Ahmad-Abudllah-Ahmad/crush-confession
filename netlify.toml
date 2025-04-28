@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  # Add NextAuth environment variables
+  # The URL will be automatically set by Netlify
+  NEXTAUTH_SECRET = "crush-confessions-secret-key-for-jwt-encryption"
+  # Use SQLite database in a writable location
+  DATABASE_URL = "file://./.data/sqlite.db"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Handle client-side routing for Next.js
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/nextjs-server"
+  status = 200
