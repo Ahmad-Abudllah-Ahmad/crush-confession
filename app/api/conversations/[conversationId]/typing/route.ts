@@ -96,58 +96,54 @@ export async function GET(
   try {
     const session = await getServerSession();
     const conversationId = params.conversationId;
-    
+
     if (!session?.user) {
-      return NextResponse.json(
-        { message: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
-    
+
     const currentUser = await prisma.user.findUnique({
       where: { email: session.user.email as string },
     });
-    
+
     if (!currentUser) {
-      return NextResponse.json(
-        { message: 'User not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
-    
+
     // Get typing users excluding current user
     const typingUserIds = getTypingUsers(conversationId, currentUser.id);
-    
+
     // Fetch user info for typing users
-    let typingUserDetails: { id: string, displayName: string }[] = [];
+    let typingUserDetails: { id: string; displayName: string }[] = [];
     if (typingUserIds.length > 0) {
       const users = await prisma.user.findMany({
         where: {
           id: {
-            in: typingUserIds
-          }
+            in: typingUserIds,
+          },
         },
         select: {
           id: true,
           displayName: true,
-        }
+        },
       });
-      
-      typingUserDetails = users.map((user: { id: string, displayName: string | null }) => ({
-        id: user.id,
-        displayName: user.displayName || 'Anonymous'
-      }));
+
+      typingUserDetails = users.map(
+        (user: { id: string; displayName: string | null }) => ({
+          id: user.id,
+          displayName: user.displayName || "Anonymous",
+        })
+      );
     }
-    
+
     return NextResponse.json({
       isTyping: typingUserDetails.length > 0,
-      typingUsers: typingUserDetails
+      typingUsers: typingUserDetails,
     });
   } catch (error) {
-    console.error('Error getting typing status:', error);
+    console.error("Error getting typing status:", error);
     return NextResponse.json(
-      { message: 'Something went wrong' },
+      { message: "Something went wrong" },
       { status: 500 }
     );
   }
-} 
+}
