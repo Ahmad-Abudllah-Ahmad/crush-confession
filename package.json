@@ -2,17 +2,13 @@
   "name": "crush-confessions",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Ahmad-Abudllah-Ahmad.github.io/crush-confession",
   "scripts": {
     "dev": "next dev",
     "build": "mkdir -p ./.data && npx prisma generate && npx prisma db push && node scripts/seed-db.js && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "setup-db": "node scripts/setup-db.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out",
-    "export": "next export && touch out/.nojekyll"
+    "setup-db": "node scripts/setup-db.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -44,7 +40,6 @@
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.55.0",
     "eslint-config-next": "14.0.4",
-    "gh-pages": "^6.3.0",
     "netlify-cli": "^20.1.1",
     "prisma": "^6.7.0",
     "typescript": "^5.0.0"

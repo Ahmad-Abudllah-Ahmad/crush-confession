@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  basePath: "/crush-confession",
-  images: {
-    unoptimized: true,
-  },
+  /* config options here */
 };
 
 module.exports = nextConfig;
